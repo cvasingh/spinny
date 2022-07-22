@@ -6,9 +6,16 @@ const PORT = process.env.PORT || 3000
 const app = express();
 app.use(cors());
 
+
 //Middleware for bodyparser
 app.use(bodyparser.urlencoded({ extended: false }))
 app.use(express.json())
+
+//default router
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + "/build/index.html");
+})
+app.use(express.static(__dirname + '/build'));
 
 
 //actual routes for book
